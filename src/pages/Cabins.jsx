@@ -11,7 +11,7 @@ function Cabins() {
   return (
     <Row type="horizontal">
       <Heading as="h1">All cabins</Heading>
-      <p>TEST 123</p>
+      <p>TEST 123m yttuy</p>
     </Row>
   );
 }
