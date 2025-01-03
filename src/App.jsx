@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import Dashboard from "./pages/Dashboard";
 import Cabins from "./pages/Cabins";
 import Bookings from "./pages/Bookings";
@@ -7,9 +7,10 @@ import Settings from "./pages/Settings";
 import Account from "./pages/Account";
 import PageNotFound from "./pages/PageNotFound";
 import Login from "./pages/Login";
+
 import GlobalStyle from "./styles/GlobalStyles";
 import AppLayout from "./ui/AppLayout";
-
+console.log('test')
 function App() {
   return (
     <>
