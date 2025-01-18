@@ -19,6 +19,7 @@ export async function deleteCabin(id) {
 
   return data;
 }
+
 export async function createEditCabin(newCabin, id) {
   const hasImage = newCabin.image?.startsWith?.(supabaseUrl);
   const imageName = `${Math.random()}-${newCabin.image.name}`.replaceAll(
@@ -44,6 +45,9 @@ export async function createEditCabin(newCabin, id) {
     throw new Error("Cabin can't be created");
   }
 
+  if (hasImage) {
+    return data;
+  }
   const { error: imageUploadError } = await supabase.storage
     .from("cabin-images")
     .upload(`${imageName}`, newCabin.image);
