@@ -1,12 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
 import styled from "styled-components";
-import { getCabins } from "../../services/apiCabins";
+
 import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
 import { UseGetCabins } from "./useGetCabins";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
 import { useSearchParams } from "react-router-dom";
+import Empty from "../../ui/Empty";
 
 // const Table = styled.div`
 //   border: 1px solid var(--color-grey-200);
@@ -36,6 +36,8 @@ export default function CabinTable() {
   const { isLoading, cabins } = UseGetCabins();
   const [searchParams] = useSearchParams();
 
+  if (!cabins) return <Empty resourceName={"Cabin"} />;
+
   if (isLoading) return <Spinner />;
   const filterValue = searchParams.get("discount") || "all";
   console.log(filterValue);
@@ -59,7 +61,6 @@ export default function CabinTable() {
     }
     return (a[field] - b[field]) * modifier;
   });
-  console.log(sortedCabins, "getting data");
 
   return (
     <Menus>
