@@ -118,7 +118,7 @@ function BookingDataBox({ booking }) {
     guests: { name: guestName, email, country, countryFlag, nationalID },
     cabins: { name: cabinName },
   } = booking;
-  console.log("extrasPrice", extrasPrice);
+
   return (
     <StyledBookingDataBox>
       <Header>
