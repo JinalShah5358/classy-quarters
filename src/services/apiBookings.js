@@ -13,6 +13,7 @@ export async function getBooking(id) {
     console.error(error);
     throw new Error("Booking not found");
   }
+  console.log("booking data", data);
   return data;
 }
 

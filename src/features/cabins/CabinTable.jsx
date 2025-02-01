@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 import Spinner from "../../ui/Spinner";
 import CabinRow from "./CabinRow";
-import { UseGetCabins } from "./useGetCabins";
+import { useGetCabins } from "./useGetCabins";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
 import { useSearchParams } from "react-router-dom";
@@ -33,7 +33,7 @@ const TableHeader = styled.header`
 `;
 
 export default function CabinTable() {
-  const { isLoading, cabins } = UseGetCabins();
+  const { isLoading, cabins } = useGetCabins();
   const [searchParams] = useSearchParams();
 
   if (!cabins) return <Empty resourceName={"Cabin"} />;
