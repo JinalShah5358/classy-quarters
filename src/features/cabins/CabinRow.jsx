@@ -66,7 +66,6 @@ function CabinRow({ cabin }) {
       image,
       description,
     });
-    console.log(test);
   };
 
   return (
@@ -79,7 +78,7 @@ function CabinRow({ cabin }) {
         {discount ? (
           <Discount>{formatCurrency(discount)}</Discount>
         ) : (
-          <span>&mdash</span>
+          <span>&mdash;</span>
         )}
         <div>
           <Modal>

@@ -10,5 +10,6 @@ export const UseGetCabins = () => {
     queryKey: ["cabins"],
     queryFn: getCabins,
   });
+  console.log(cabins);
   return { isLoading, cabins, error };
 };

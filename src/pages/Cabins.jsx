@@ -6,6 +6,7 @@ import CabinTable from "../features/cabins/CabinTable";
 import Button from "../ui/Button";
 import CreateCabinForm from "../features/cabins/CreateCabinForm";
 import AddCabin from "../features/cabins/AddCabin";
+import CabinOperation from "../features/cabins/cabinOperation";
 
 function Cabins() {
   useEffect(function () {
@@ -16,7 +17,8 @@ function Cabins() {
     <>
       <Row type="horizontal">
         <Heading as="h1">All cabins</Heading>
-        <p>Filter / sort</p>
+
+        <CabinOperation />
       </Row>
       <Row>
         <CabinTable />
