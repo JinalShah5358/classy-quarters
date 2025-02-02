@@ -2,28 +2,30 @@ import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
 import Spinner from "../../ui/Spinner";
-import { useGetSettings } from "./useGetSettings";
-import { useUpdateSettings } from "./useUpdateSettings";
+import { useSettings } from "./useSettings";
+import { useUpdateSetting } from "./useUpdateSetting";
 
 function UpdateSettingsForm() {
   const {
     isLoading,
-    settigsData: {
+    settings: {
       minBookingLength,
       maxBookingLength,
-      maxGuestBookingPerBooking,
+      maxGuestsPerBooking,
       breakfastPrice,
     } = {},
-  } = useGetSettings();
-  console.log("settigsData");
-
-  const { isUpdating, updateSettings } = useUpdateSettings();
-  const handleUpdate = (e, field) => {
-    const value = e.target.value;
-    updateSettings({ [field]: value });
-  };
+  } = useSettings();
+  const { isUpdating, updateSetting } = useUpdateSetting();
 
   if (isLoading) return <Spinner />;
+
+  function handleUpdate(e, field) {
+    const { value } = e.target;
+
+    if (!value) return;
+    updateSetting({ [field]: value });
+  }
+
   return (
     <Form>
       <FormRow label="Minimum nights/booking">
@@ -35,6 +37,7 @@ function UpdateSettingsForm() {
           onBlur={(e) => handleUpdate(e, "minBookingLength")}
         />
       </FormRow>
+
       <FormRow label="Maximum nights/booking">
         <Input
           type="number"
@@ -44,15 +47,17 @@ function UpdateSettingsForm() {
           onBlur={(e) => handleUpdate(e, "maxBookingLength")}
         />
       </FormRow>
+
       <FormRow label="Maximum guests/booking">
         <Input
           type="number"
           id="max-guests"
-          defaultValue={maxGuestBookingPerBooking}
+          defaultValue={maxGuestsPerBooking}
           disabled={isUpdating}
-          onBlur={(e) => handleUpdate(e, "maxGuestBookingPerBooking")}
+          onBlur={(e) => handleUpdate(e, "maxGuestsPerBooking")}
         />
       </FormRow>
+
       <FormRow label="Breakfast price">
         <Input
           type="number"

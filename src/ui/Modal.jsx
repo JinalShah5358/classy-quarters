@@ -1,11 +1,4 @@
-import {
-  cloneElement,
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiXMark } from "react-icons/hi2";
 import styled from "styled-components";
@@ -66,33 +59,35 @@ function Modal({ children }) {
   const [openName, setOpenName] = useState("");
 
   const close = () => setOpenName("");
-  const openFn = setOpenName;
+  const open = setOpenName;
+
   return (
-    <ModalContext.Provider value={{ openName, close, openFn }}>
+    <ModalContext.Provider value={{ openName, close, open }}>
       {children}
     </ModalContext.Provider>
   );
 }
 
-function Open({ children, opens: openModalName }) {
-  const { openFn } = useContext(ModalContext);
+function Open({ children, opens: opensWindowName }) {
+  const { open } = useContext(ModalContext);
 
-  return cloneElement(children, { onClick: () => openFn(openModalName) });
+  return cloneElement(children, { onClick: () => open(opensWindowName) });
 }
 
 function Window({ children, name }) {
   const { openName, close } = useContext(ModalContext);
-
   const ref = useOutsideClick(close);
 
   if (name !== openName) return null;
+
   return createPortal(
     <Overlay>
       <StyledModal ref={ref}>
-        {cloneElement(children, { onModalClose: close })}
         <Button onClick={close}>
           <HiXMark />
         </Button>
+
+        <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>
     </Overlay>,
     document.body
