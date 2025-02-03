@@ -13,7 +13,7 @@ import { useBooking } from "../bookings/useBooking";
 import { useEffect, useState } from "react";
 import Checkbox from "../../ui/Checkbox";
 import { formatCurrency } from "../../utils/helpers";
-import { useCheckin } from "./useCheckin";
+import { useCheckinhook } from "./useCheckinhook";
 import { useSettings } from "../settings/useSettings";
 
 const Box = styled.div`
@@ -33,7 +33,7 @@ function CheckinBooking() {
   useEffect(() => setConfirmPaid(booking?.isPaid ?? false), [booking]);
 
   const moveBack = useMoveBack();
-  const { checkin, isCheckingIn } = useCheckin();
+  const { checkin, isCheckingIn } = useCheckinhook();
 
   if (isLoading || isLoadingSettings) return <Spinner />;
 
